@@ -1,0 +1,14 @@
+DROP PROCEDURE IF EXISTS counter;
+DELIMITER $$
+CREATE PROCEDURE counter (n INT)
+BEGIN
+DECLARE i VARCHAR(50) DEFAULT '';
+WHILE (n > 0) DO
+SET i = IF(n % 2 = 0, CONCAT(i, ' ', n), CONCAT(i, '', ''));
+SET n = n - 1;
+END WHILE;
+SELECT i;
+END$$
+DELIMITER ;
+
+CALL counter(30);
